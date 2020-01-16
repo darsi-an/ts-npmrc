@@ -1,0 +1,15 @@
+
+#(dot)env
+.env
+
+# VS Codde
+.vscode
+
+# Dependency directories
+node_modules/
+
+# OS X
+.DS_Store
+
+# Compiled Code
+lib/

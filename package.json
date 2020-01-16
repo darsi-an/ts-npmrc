@@ -1,0 +1,33 @@
+{
+  "name": "ts-npmrc",
+  "version": "0.0.0",
+  "description": "A npmrc manager using ts-command-line",
+  "main": "./lib/start.js",
+  "bin": {
+    "ts-npmrc": "./lib/start.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "start": "node ./lib/start.ts",
+    "clean": "rm -rf ./node_modules ./package-lock.json ./lib",
+    "lint": "eslint --ext .js,.ts"
+  },
+  "keywords": [],
+  "author": "darsi-an",
+  "license": "",
+  "dependencies": {
+    "@microsoft/node-core-library": "^3.18.2",
+    "@microsoft/ts-command-line": "^4.3.7",
+    "colors": "^1.4.0",
+    "typescript": "^3.7.4"
+  },
+  "devDependencies": {
+    "@microsoft/node-core-library": "^3.18.2",
+    "@microsoft/ts-command-line": "^4.3.7",
+    "@typescript-eslint/eslint-plugin": "^2.16.0",
+    "@typescript-eslint/parser": "^2.16.0",
+    "colors": "^1.4.0",
+    "eslint": "^6.8.0",
+    "typescript": "^3.7.4"
+  }
+}

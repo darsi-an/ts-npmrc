@@ -1,0 +1,24 @@
+{
+    "compilerOptions": {
+        "target": "es6",
+        "module": "commonjs",
+        "strict": true,
+
+        "forceConsistentCasingInFileNames": true,
+        "sourceMap": true,
+        "declaration": false,
+        "declarationMap": false,
+        "inlineSources": true,
+        "experimentalDecorators": true,
+        "strictNullChecks": true,
+        //"esModuleInterop": true,
+        "noUnusedLocals": true,
+        "outDir": "lib",
+        "rootDir": "src",
+        "types": []
+    },
+    "include": [
+        "src/**/*"
+    ],
+    // "exclude": ["node_modules"]
+  }
