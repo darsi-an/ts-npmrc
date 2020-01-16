@@ -42,7 +42,7 @@ Optional arguments:
 
 #### Initialization
 
-When executing, if npmrcStore (~/.npmrcs) does not exist, `ts-npmrc` will create the npmrcStore folder in a user's home directory to store npm profiles. If you have a .npmrc in the home directory (~/.npmrc), ts-npmrc will copy this to the default .npmrc profile and AUTOMATICALLY create a symbolic link to point to it. 
+When executing, if npmrcStore \(\~/.npmrcs) does not exist, `ts-npmrc` will create the npmrcStore folder in a user's home directory to store npm profiles. If you have a .npmrc in the home directory (~/.npmrc), ts-npmrc will copy this to the default .npmrc profile and AUTOMATICALLY create a symbolic link to point to it. 
 
 ```
 $ ts-npmrc
