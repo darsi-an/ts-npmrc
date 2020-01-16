@@ -3,11 +3,11 @@
 
 ## Overview
 
-`ts-npmrc` is a command line tool for managing multiple `.npmrc` files. Built to provide an updated alternative to [npmrc](https://github.com/deoxxa/npmrc), `ts-npmrc` implements missing features and comes packed with new syncing (WIP) and linking capabilities. As an alternative to `npmrc`, it uses the same NPMRC_STORE path allowing you to switch to `ts-npmrc` with ease and grace. Currently, you can manage (create/delete/link/list) .npmrc files via this tool.
+`ts-npmrc` is a command line tool for managing multiple `.npmrc` files. Built to provide an updated alternative to [npmrc](https://github.com/deoxxa/npmrc), `ts-npmrc` implements missing features and comes packed with new syncing (WIP) and linking capabilities. As an alternative to `npmrc`, it uses the same npmrcStore path allowing you to switch to `ts-npmrc` with ease and grace. Currently, you can manage (create/delete/link/list) .npmrc files via this tool.
 
 ## Goal
 
-This tool aims to provide an updated npmrc profile manager which takes into consider more recent configuration use cases in DevOps/CI pipelines and workflows. 
+This tool aims to provide an updated npmrc profile manager which takes into consideration more recent configuration use cases in DevOps/CI pipelines and workflows.
 
 Feel free to open an issue, for discussions (on use cases, design, implementation), suggestions or features requests you may have.
 
