@@ -9,7 +9,7 @@
 
 This tool aims to provide an updated npmrc profile manager which takes into consideration more recent configuration use cases in DevOps/CI pipelines and workflows.
 
-Feel free to open an issue, for discussions (on use cases, design, implementation), suggestions or features requests you may have.
+Feel free to open an issue for any discussions (on use cases, design, implementation), suggestions or features requests you may have.
 
 **Features under WIP**
 - Sync profile (Instead of creating symbolic link from ~/.npmrc to target profile)
@@ -71,7 +71,7 @@ Creating new profile for newProfile
 
 ```
 
-#### List profiles in store
+#### List .npmrc profiles in store
 ```
 $ ts-npmrc profile -l
 
@@ -83,7 +83,7 @@ newProfile
 
 ```
 
-#### Delete profile from store
+#### Delete a .npmrc profile from store
 
 ```
 $ ts-npmrc profile -d targetProfile
@@ -95,7 +95,7 @@ Deleting: C:\Users\Darsi\.npmrcs\targetProfile
 
 ```
 
-#### Linking a targetProfile
+#### Link and activate a .npmrc profile
 Linking in ts-npmrc is synonymous to switching profiles in npmrc. Instead of doing it automatically upon creation, we give users the power to manually link to a target profile.
 
 ```
@@ -109,18 +109,18 @@ Linking targetProfile profile...
 Activating .npmrc (targetProfile)
 ```
 
-You can add config options to the profile manually or, via npm-config set followed by `npm adduser` or `npm login` to authenticate. In both cases, just simply run `ts-npmrc link -p <target>` after you've set up your targets .npmrc file to activate. 
+You can add config options to the target .npmrc profile manually or, via `npm-config` set followed by `npm adduser` or `npm login` to authenticate. In both cases, just simply run `ts-npmrc link -p <target>` after you've set up your target's .npmrc file to activate. 
 
 
 ## FAQ
 
-#### Differences with npmrc
+#### Differences with [npmrc](https://github.com/deoxxa/npmrc)?
 
-- Uses FileSystem @microsoft/node-core-library
+- Modular design using [@microsoft/ts-command-line ](https://www.npmjs.com/package/@microsoft/ts-command-line)
+- Uses [@microsoft/node-core-library](https://www.npmjs.com/package/@microsoft/node-core-library) FileSystem API
 - Ability to delete profile, manually link and sync (WIP)
-- Modular design using @microsoft/ts-command-line
 - No fuzzy matching
-- Structured and extensible using ts-command-line scaffold pattern
+- Structured and extensible using [@microsoft/ts-command-line](https://github.com/microsoft/rushstack/tree/master/libraries/ts-command-line#scaffold-model) scaffold pattern 
 
 #### Private Registries?
 
