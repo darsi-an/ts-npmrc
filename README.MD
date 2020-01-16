@@ -3,7 +3,7 @@
 
 ## Overview
 
-`ts-npmrc` is a command line tool for managing multiple `.npmrc` files. Built to provide an updated alternative to `npmrc`, `ts-npmrc` implements missing features and comes packed with new syncing (WIP) and linking capabilities. As an alternative to `npmrc`, it uses the same NPMRC_STORE path allowing you to switch to `ts-npmrc` with ease and grace. Currently, you can manage (create/delete/link/list) .npmrc files via this tool.
+`ts-npmrc` is a command line tool for managing multiple `.npmrc` files. Built to provide an updated alternative to [npmrc](https://github.com/deoxxa/npmrc), `ts-npmrc` implements missing features and comes packed with new syncing (WIP) and linking capabilities. As an alternative to `npmrc`, it uses the same NPMRC_STORE path allowing you to switch to `ts-npmrc` with ease and grace. Currently, you can manage (create/delete/link/list) .npmrc files via this tool.
 
 ## Goal
 
