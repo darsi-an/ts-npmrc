@@ -98,8 +98,6 @@ export class LinkManager {
 
     // ~/.npmrcs/targetProfile
     const targetPath: string = options.linkTargetPath;
-//    fs.chmodSync(options.newLinkPath, 0o600);
-    fs.chmodSync(targetPath, 0o600);
 
     FileSystem.createSymbolicLinkFile({
       linkTargetPath: targetPath,
