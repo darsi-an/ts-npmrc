@@ -1,7 +1,21 @@
 {
   "name": "ts-npmrc",
   "version": "0.0.0",
-  "description": "A npmrc manager using ts-command-line",
+  "description": "A simple CLI tool for managing multiple .npmrc profiles",
+  "keywords": [
+    "npmrc",
+    "config",
+    "registry",
+    "publish",
+    "utility",
+    "cli",
+    "npm"
+  ],
+  "preferGlobal": true,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/darsi-an/ts-npmrc/tree/master"
+  },
   "main": "./lib/start.js",
   "bin": {
     "ts-npmrc": "./lib/start.js"
@@ -10,11 +24,11 @@
     "build": "tsc",
     "start": "node ./lib/start.ts",
     "clean": "rm -rf ./node_modules ./package-lock.json ./lib",
-    "lint": "eslint --ext .js,.ts"
+    "lint": "eslint --ext .js,.ts .",
+    "lint:fix": "eslint --fix --ext .js,.ts ."
   },
-  "keywords": [],
   "author": "darsi-an",
-  "license": "",
+  "license": "MIT",
   "dependencies": {
     "@microsoft/node-core-library": "^3.18.2",
     "@microsoft/ts-command-line": "^4.3.7",
@@ -28,6 +42,9 @@
     "@typescript-eslint/parser": "^2.16.0",
     "colors": "^1.4.0",
     "eslint": "^6.8.0",
+    "eslint-config-prettier": "^6.9.0",
+    "eslint-plugin-prettier": "^3.1.2",
+    "prettier": "^1.19.1",
     "typescript": "^3.7.4"
   }
 }

@@ -26,7 +26,7 @@ $ npm install -g ts-npmrc
 ```
 $ ts-npmrc --help
 
-ts-npmrc: A simple tool for managing multiple .npmrcs
+ts-npmrc: A simple tool for managing multiple .npmrc profiles
 
 usage: ts-npmrc [-h] <command> ...
 
@@ -47,7 +47,7 @@ When executing, if npmrcStore \(\~/.npmrcs) does not exist, `ts-npmrc` will crea
 ```
 $ ts-npmrc
 
-ts-npmrc: A simple tool for managing multiple .npmrcs
+ts-npmrc: A simple tool for managing multiple .npmrc profiles
 
 npmrc-store folder does not exist. ts-npmrc will create a store to manage your profiles
 
@@ -65,7 +65,7 @@ Activating .npmrc (default)
 ```
 $ ts-npmrc profile -c newProfile
 
-ts-npmrc: A simple tool for managing multiple .npmrcs
+ts-npmrc: A simple tool for managing multiple .npmrc profiles
 
 Creating new profile for newProfile
 
@@ -75,7 +75,7 @@ Creating new profile for newProfile
 ```
 $ ts-npmrc profile -l
 
-ts-npmrc: A simple tool for managing multiple .npmrcs
+ts-npmrc: A simple tool for managing multiple .npmrc profiles
 
 Retrieving existing profiles from npmrc-store:
 default
@@ -88,7 +88,7 @@ newProfile
 ```
 $ ts-npmrc profile -d targetProfile
 
-ts-npmrc: A simple tool for managing multiple .npmrcs
+ts-npmrc: A simple tool for managing multiple .npmrc profiles
 
 Deleting profile targetProfile
 Deleting: C:\Users\Darsi\.npmrcs\targetProfile
@@ -101,7 +101,7 @@ Linking in ts-npmrc is synonymous to switching profiles in npmrc. Instead of doi
 ```
 $ ts-npmrc link -p targetProfile
 
-ts-npmrc: A simple tool for managing multiple .npmrcs
+ts-npmrc: A simple tool for managing multiple .npmrc profiles
 
 ts-npmrc link is executing
 Initializing link action
@@ -119,8 +119,8 @@ You can add config options to the target .npmrc profile manually or, via `npm-co
 - Modular design using [@microsoft/ts-command-line ](https://www.npmjs.com/package/@microsoft/ts-command-line)
 - Uses [@microsoft/node-core-library](https://www.npmjs.com/package/@microsoft/node-core-library) FileSystem API
 - Ability to delete profile, manually link and sync (WIP)
-- No fuzzy matching
 - Structured and extensible using [@microsoft/ts-command-line](https://github.com/microsoft/rushstack/tree/master/libraries/ts-command-line#scaffold-model) scaffold pattern 
+- No fuzzy matching
 
 #### Private Registries?
 

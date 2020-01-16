@@ -2,7 +2,7 @@ import { NpmrcCommandLineParser } from './cli/NpmrcCommandLineParser';
 import * as colors from 'colors';
 import { EOL } from 'os';
 /**
- * General operations for the CLI engine. 
+ * General operations for the CLI engine.
  */
 export class Launch {
     /**
@@ -18,11 +18,9 @@ export class Launch {
     public static _printStartUpBanner(): void {
         const nodeVersion: string = process.versions.node;
         console.log(
-            EOL +
-            colors.bold(`ts-npmrc: A simple tool for managing multiple .npmrcs`) +
-            EOL +
-            `Node js version is ${nodeVersion}` +
-            EOL
+            colors.bold(`ts-npmrc: A simple tool for managing multiple .npmrc profiles`) +
+                `Node js version is ${nodeVersion}` +
+                EOL,
         );
     }
 }
