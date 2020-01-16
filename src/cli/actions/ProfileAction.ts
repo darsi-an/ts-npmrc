@@ -21,7 +21,7 @@ export class ProfileAction extends CommandLineAction{
         super({
             actionName: 'profile',
             documentation: "ts-npmrc profile action. List, Create, Delete",
-            summary: "Either create, delete or listnpmrc profiles in store"
+            summary: "Either create, delete or list npmrc profiles in store"
         });
 
     };
@@ -43,13 +43,13 @@ export class ProfileAction extends CommandLineAction{
             parameterLongName: '--delete',
             parameterShortName: '-d',
             description: 'Delete existing profile'
-        })
+        });
     }
     
     protected onExecute(): Promise<void> {
         return new Promise((resolve,reject) => {
             if (this._list.value){
-                console.log('Retreiving existing profiles from npmrc-store')
+                console.log('Retrieving existing profiles from npmrc-store');
                 this.getProfiles();
             }
 
@@ -87,7 +87,7 @@ export class ProfileAction extends CommandLineAction{
             return process.exit(1);
         }
 
-        FileSystem.writeFile(profile,'')
+        FileSystem.writeFile(profile,'');
         return Promise.resolve();
     }
 
@@ -96,7 +96,7 @@ export class ProfileAction extends CommandLineAction{
             console.log('Specify profile name that you want to delete');
             process.exit(1);
         }
-        const profilePath = path.join(this.npmrcStore, name)
+        const profilePath = path.join(this.npmrcStore, name);
         if (Utilities.fileExists(profilePath)){
             Utilities.deleteFile(profilePath);
         } else {

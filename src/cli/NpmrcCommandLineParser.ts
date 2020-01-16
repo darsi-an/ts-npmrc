@@ -9,16 +9,19 @@ import { LinkManager } from '../logic/LinkManager';
 
 export class NpmrcCommandLineParser extends CommandLineParser{
     
-    private homeDir: string = Utilities.getHomeDirectory();
-    private npmrc: string = path.join(this.homeDir, '.npmrc');
-    private npmrcStore: string = path.join(this.homeDir, '.npmrcs');
+    private homeDir: string;
+    private npmrc: string ;
+    private npmrcStore: string;
 
-    
     public constructor() {
         super({
             toolFilename: "ts-npmrc",
             toolDescription: ""
         });
+
+        this.homeDir = Utilities.getHomeDirectory();
+        this.npmrc = path.join(this.homeDir, '.npmrc');
+        this.npmrcStore = path.join(this.homeDir, '.npmrcs');
 
         if (!FileSystem.exists(this.npmrcStore)) {
             this._makeStore();
@@ -37,8 +40,7 @@ export class NpmrcCommandLineParser extends CommandLineParser{
         try {
             if (!FileSystem.exists(npmrcStoreFolder)){
                 console.log(
-                    EOL +
-                    `npmrc-store folder does not exist. ` +
+                    `npmrcStore folder does not exist. ` +
                     `ts-npmrc will create a store to manage your profiles` +
                     EOL
                     );
@@ -51,18 +53,17 @@ export class NpmrcCommandLineParser extends CommandLineParser{
         }
 
         if (FileSystem.exists(npmrcPath)) {
-            console.log('Creating %s default npmrc', npmrcPath);
+            console.log('Making %s the default .npmrc file', npmrcPath);
             FileSystem.move({
                 sourcePath:this.npmrc,
                 destinationPath: defaultPath,
-            })
+            });
         } else {
             FileSystem.writeFile(defaultPath,'');
         }
-        console.log('Call link function on default')
+        console.log('Call link function on default');
         const linkManager: LinkManager = new LinkManager();
         linkManager.linkTargetProfile('default');
-        process.exit(0)   
     }
 
     private _populateActions(): void {
@@ -73,7 +74,26 @@ export class NpmrcCommandLineParser extends CommandLineParser{
     protected onDefineParameters(): void {}
 
     protected onExecute(): Promise<void> {
-        return super.onExecute();
+        process.exitCode = 1;
+    
+        return this._wrapOnExecute().catch((error: Error) => {
+            console.log(error);
+            process.exit(1);
+          // this._reportErrorAndSetExitCode(error);
+        }).then(() => {
+          // If we make it here, everything went fine, so reset the exit code back to 0
+          process.exitCode = 0;
+        });
+        // return super.onExecute();
     }
+
+    private _wrapOnExecute(): Promise<void> {
+        try {
+          return super.onExecute().then(() => {
+          });
+        } catch (error) {
+          return Promise.reject(error);
+        }
+      }
     
 }

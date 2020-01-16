@@ -28,7 +28,7 @@ export class LinkManager {
 
   /**
    * This is used to create the symbolic link to the the target profile
-   * @param targetProfile The target profile the symboli link points to
+   * @param targetProfile The target profile the symbolic link points to
    */
   private _link(targetProfile: string): void {
 
@@ -62,7 +62,7 @@ export class LinkManager {
   }
 
   /**
-   * This is called to ensure we dont overwrite an exisiting .npmrc
+   * This is called to ensure we don't overwrite an existing .npmrc
    * @param stat File or Symlink status/information object 
    */
   private _checkSymLink(stat: fs.Stats): void {
@@ -98,6 +98,8 @@ export class LinkManager {
 
     // ~/.npmrcs/targetProfile
     const targetPath: string = options.linkTargetPath;
+//    fs.chmodSync(options.newLinkPath, 0o600);
+    fs.chmodSync(targetPath, 0o600);
 
     FileSystem.createSymbolicLinkFile({
       linkTargetPath: targetPath,

@@ -42,6 +42,7 @@ module.exports = {
               "propertyDeclaration": true,
               //"variableDeclaration": true,
             },
-          ]
+          ],
+          "@typescript-eslint/semi": ["error"], 
     }
 };
