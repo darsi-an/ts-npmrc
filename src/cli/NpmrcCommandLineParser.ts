@@ -6,11 +6,14 @@ import { Utilities } from '../utilities/Utilities';
 import { ProfileAction } from './actions/ProfileAction';
 import { LinkAction } from './actions/LinkAction';
 import { LinkManager } from '../logic/LinkManager';
+import { CreateAction } from './actions/CreateAction';
+import { DeleteAction } from './actions/DeleteAction';
+import { SyncAction } from './actions/SyncAction';
+import { ListAction } from './actions/ListAction';
 
 export class NpmrcCommandLineParser extends CommandLineParser {
-    private homeDir: string;
-    private npmrc: string;
-    private npmrcStore: string;
+    private npmrc: string = path.join(Utilities.getHomeDirectory(), '.npmrc');
+    private npmrcStore: string = path.join(Utilities.getHomeDirectory(), '.npmrcs');
 
     public constructor() {
         super({
@@ -18,16 +21,23 @@ export class NpmrcCommandLineParser extends CommandLineParser {
             toolDescription: '',
         });
 
-        this.homeDir = Utilities.getHomeDirectory();
-        this.npmrc = path.join(this.homeDir, '.npmrc');
-        this.npmrcStore = path.join(this.homeDir, '.npmrcs');
-
         if (!FileSystem.exists(this.npmrcStore)) {
             this._makeStore();
         }
+        if (Utilities.fileExists(this.npmrc) && Utilities.directoryExists(this.npmrcStore)) {
+            console.log(
+                'Current .npmrc file (%s) is not a symlink. You may want to copy it into %s.',
+                this.npmrc,
+                this.npmrcStore,
+            );
+        }
+
         this._populateActions();
     }
 
+    /**
+     * Creates '.npmrcs' directory at a users home directory if it doesn't exist
+     */
     private _makeStore(): void {
         const homeDirectory = Utilities.getHomeDirectory();
         const npmrcStoreFolder: string = path.join(homeDirectory, '.npmrcs');
@@ -63,8 +73,12 @@ export class NpmrcCommandLineParser extends CommandLineParser {
     }
 
     private _populateActions(): void {
+        this.addAction(new CreateAction());
+        this.addAction(new DeleteAction());
+        this.addAction(new ListAction());
         this.addAction(new ProfileAction());
         this.addAction(new LinkAction());
+        // this.addAction(new SyncAction());
     }
 
     protected onDefineParameters(): void {
