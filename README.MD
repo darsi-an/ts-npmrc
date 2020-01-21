@@ -3,17 +3,13 @@
 
 ## Overview
 
-`ts-npmrc` is a command line tool for managing multiple `.npmrc` files. Built to provide an updated alternative to [npmrc](https://github.com/deoxxa/npmrc), `ts-npmrc` implements missing features and comes packed with new syncing (WIP) and linking capabilities. As an alternative to `npmrc`, it uses the same npmrcStore path allowing you to switch to `ts-npmrc` with ease and grace. Currently, you can manage (create/delete/link/list) .npmrc files via this tool.
+`ts-npmrc` is a command line tool for managing multiple `.npmrc` files. Built to provide an updated alternative to [npmrc](https://github.com/deoxxa/npmrc), `ts-npmrc` has all previous features, support for requested features and provides more control over linking capabilities. As an alternative to `npmrc`, it uses the same npmrcStore path allowing you to switch to `ts-npmrc` with ease and grace. Currently, you can manage (create/delete/link/list) .npmrc files via this tool.
 
 ## Goal
 
 This tool aims to provide an updated npmrc profile manager which takes into consideration more recent configuration use cases in DevOps/CI pipelines and workflows.
 
 Feel free to open an issue for any discussions (on use cases, design, implementation), suggestions or features requests you may have.
-
-**Features under WIP**
-- Sync profile (Instead of creating symbolic link from ~/.npmrc to target profile)
-- Trim undefined environment variable
 
 ## Installation
 
@@ -63,7 +59,7 @@ Activating .npmrc (default)
 
 #### Create a new profile 
 ```
-$ ts-npmrc profile -c newProfile
+$ ts-npmrc create -p newProfile
 
 ts-npmrc: A simple tool for managing multiple .npmrc profiles
 
@@ -73,7 +69,7 @@ Creating new profile for newProfile
 
 #### List .npmrc profiles in store
 ```
-$ ts-npmrc profile -l
+$ ts-npmrc list 
 
 ts-npmrc: A simple tool for managing multiple .npmrc profiles
 
@@ -86,7 +82,7 @@ newProfile
 #### Delete a .npmrc profile from store
 
 ```
-$ ts-npmrc profile -d targetProfile
+$ ts-npmrc delete -p targetProfile
 
 ts-npmrc: A simple tool for managing multiple .npmrc profiles
 
