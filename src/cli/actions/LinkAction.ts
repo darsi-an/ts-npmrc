@@ -3,7 +3,7 @@ import { LinkManager } from '../../logic/LinkManager';
 import { EOL } from 'os';
 
 export class LinkAction extends CommandLineAction {
-    private _link!: CommandLineStringParameter;
+    private _targetProfile!: CommandLineStringParameter;
 
     public constructor() {
         super({
@@ -14,7 +14,7 @@ export class LinkAction extends CommandLineAction {
     }
 
     protected onDefineParameters(): void {
-        this._link = this.defineStringParameter({
+        this._targetProfile = this.defineStringParameter({
             parameterLongName: '--profile',
             parameterShortName: '-p',
             argumentName: 'PROFILE_NAME',
@@ -24,15 +24,15 @@ export class LinkAction extends CommandLineAction {
 
     protected onExecute(): Promise<void> {
         console.log('ts-npmrc link is executing');
-        if (!this._link.value) {
+        if (!this._targetProfile.value) {
             console.log('Specify a profile to symlink');
             process.exit(1);
         }
-        if (this._link.value) {
+        if (this._targetProfile.value) {
             console.log(EOL + 'Initializing link action ');
         }
 
         const linkManager: LinkManager = new LinkManager();
-        return linkManager.linkTargetProfile(this._link.value);
+        return linkManager.linkTargetProfile(this._targetProfile.value);
     }
 }

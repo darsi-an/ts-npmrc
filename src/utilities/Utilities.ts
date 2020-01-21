@@ -1,3 +1,6 @@
+// Copyright (c) Microsoft Corporation. All rights reserved. Licensed under the MIT license.
+// See LICENSE in the project root for license information.
+
 import * as fs from 'fs';
 import * as os from 'os';
 import * as path from 'path';
@@ -21,6 +24,16 @@ export class Utilities {
         }
 
         return homeFolder;
+    }
+
+    public static getStorePath(): string {
+        const storeDirectory: string = path.join(this.getHomeDirectory(), '.npmrcs');
+        return storeDirectory;
+    }
+
+    public static getUserConfigPath(): string {
+        const userConfigPath: string = path.join(Utilities.getHomeDirectory(), '.npmrc');
+        return userConfigPath;
     }
 
     /**
@@ -134,11 +147,30 @@ export class Utilities {
 
     /**
      * Attempts to delete a file. If it does not exist, or the path is not a file, it no-ops.
+     * @param filePath path to the file that should be deleted.
      */
     public static deleteFile(filePath: string): void {
         if (Utilities.fileExists(filePath)) {
             console.log(`Deleting: ${filePath}`);
             FileSystem.deleteFile(filePath);
         }
+    }
+
+    /**
+     * Follows linkPath to its destination and returns the absolute path to the final target of the link.
+     * @param linkPath : The path to the link.
+     */
+    public static getActiveProfile(linkPath: string): string {
+        const activeProfile: string = FileSystem.getRealPath(linkPath);
+        return activeProfile;
+    }
+
+    /**
+     * Reads contents of folder specified by path.
+     * @param path The path to the folder which should be read.
+     */
+    public static getFileList(path: string): string[] {
+        const fileList: string[] = FileSystem.readFolder(path);
+        return fileList;
     }
 }
