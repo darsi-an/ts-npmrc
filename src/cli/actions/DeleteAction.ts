@@ -11,8 +11,8 @@ export class DeleteAction extends CommandLineAction {
     public constructor() {
         super({
             actionName: 'delete',
-            documentation: '',
-            summary: '',
+            documentation: 'Delete a stored profile',
+            summary: 'Deletes a stored profile ',
         });
 
         this.npmrcStore = path.join(Utilities.getHomeDirectory(), '.npmrcs');
@@ -20,10 +20,10 @@ export class DeleteAction extends CommandLineAction {
 
     protected onDefineParameters(): void {
         this._profile = this.defineStringParameter({
-            parameterLongName: '--delete',
-            parameterShortName: '-d',
+            parameterLongName: '--profile',
+            parameterShortName: '-p',
             argumentName: 'PROFILE_NAME',
-            description: 'Delete existing profile',
+            description: 'Deletes the specified profile if it exists',
         });
     }
 

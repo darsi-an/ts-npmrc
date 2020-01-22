@@ -10,8 +10,8 @@ export class ListAction extends CommandLineAction {
     public constructor() {
         super({
             actionName: 'list',
-            documentation: 'Prints to stdout the currently linked and active .npmrc profile.',
-            summary: 'list, --la/-a',
+            documentation: 'Prints to stdout a list of stored .npmrc. Active profile will be specified.',
+            summary: 'Lists all stored .npmrc profiles',
         });
     }
     protected onDefineParameters(): void {
@@ -26,7 +26,11 @@ export class ListAction extends CommandLineAction {
     private listProfiles(): void {
         const activeProfile: string = path.basename(Utilities.getActiveProfile(this.npmrc)); // FileSystem.readFolder(this.npmrcStore);
         const profilesList: string[] = Utilities.getFileList(this.npmrcStore);
-        console.log('Active .npmrc profile: %s', activeProfile);
+        console.log('Stored profiles: \n');
+        if (profilesList.length == 0) {
+            console.log('No stored .npmrc profile. You may want to create a profile using "ts-npmrc create"');
+            return;
+        }
         for (const filename of profilesList) {
             console.log(` %s %s`, `${filename}`, filename == activeProfile ? '(active)' : ' ');
         }

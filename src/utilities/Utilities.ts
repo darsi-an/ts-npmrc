@@ -161,8 +161,33 @@ export class Utilities {
      * @param linkPath : The path to the link.
      */
     public static getActiveProfile(linkPath: string): string {
-        const activeProfile: string = FileSystem.getRealPath(linkPath);
-        return activeProfile;
+        let activeProfile!: string;
+        try {
+            activeProfile = fs.readlinkSync(linkPath);
+        } catch (e) {
+            if (e.code == 'ENOENT') {
+                console.log('.npmrc (%s) does not exist. Link a profile using "ts-npmrc link"\n', linkPath);
+                return '';
+            }
+        }
+        if (!Utilities.fileExists(activeProfile)) {
+            console.log(
+                'Symlink is broken, npmrc profile (%s) does not exist. Link a profile using "ts-npmrc link"\n',
+                activeProfile,
+            );
+            return '';
+        }
+        const lstat: fs.Stats = FileSystem.getLinkStatistics(linkPath);
+        const storePath: string = this.getStorePath();
+        if (!lstat.isSymbolicLink()) {
+            console.log(
+                'The .npmrc (%s) is active but not a symlink. You may want to copy into npmrcs (%s) and link profile using "ts-npmrc link".\n',
+                linkPath,
+                storePath,
+            );
+        }
+        const activeProfilePath: string = FileSystem.getRealPath(linkPath);
+        return activeProfilePath;
     }
 
     /**

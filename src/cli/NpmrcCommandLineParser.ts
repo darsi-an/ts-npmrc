@@ -3,12 +3,10 @@ import { FileSystem } from '@microsoft/node-core-library';
 import * as path from 'path';
 import { EOL } from 'os';
 import { Utilities } from '../utilities/Utilities';
-import { ProfileAction } from './actions/ProfileAction';
 import { LinkAction } from './actions/LinkAction';
 import { LinkManager } from '../logic/LinkManager';
 import { CreateAction } from './actions/CreateAction';
 import { DeleteAction } from './actions/DeleteAction';
-import { SyncAction } from './actions/SyncAction';
 import { ListAction } from './actions/ListAction';
 
 export class NpmrcCommandLineParser extends CommandLineParser {
@@ -59,7 +57,7 @@ export class NpmrcCommandLineParser extends CommandLineParser {
         }
 
         if (FileSystem.exists(npmrcPath)) {
-            console.log('Making %s the default .npmrc file', npmrcPath);
+            console.log('ts-npmrc will make %s the default .npmrc file', npmrcPath);
             FileSystem.move({
                 sourcePath: this.npmrc,
                 destinationPath: defaultPath,
@@ -67,7 +65,6 @@ export class NpmrcCommandLineParser extends CommandLineParser {
         } else {
             FileSystem.writeFile(defaultPath, '');
         }
-        console.log('Call link function on default');
         const linkManager: LinkManager = new LinkManager();
         linkManager.linkTargetProfile('default');
     }
@@ -76,9 +73,7 @@ export class NpmrcCommandLineParser extends CommandLineParser {
         this.addAction(new CreateAction());
         this.addAction(new DeleteAction());
         this.addAction(new ListAction());
-        this.addAction(new ProfileAction());
         this.addAction(new LinkAction());
-        // this.addAction(new SyncAction());
     }
 
     protected onDefineParameters(): void {
@@ -87,28 +82,6 @@ export class NpmrcCommandLineParser extends CommandLineParser {
     }
 
     protected onExecute(): Promise<void> {
-        process.exitCode = 1;
-
-        return this._wrapOnExecute()
-            .catch((error: Error) => {
-                console.log(error);
-                process.exit(1);
-                // this._reportErrorAndSetExitCode(error);
-            })
-            .then(() => {
-                // If we make it here, everything went fine, so reset the exit code back to 0
-                process.exitCode = 0;
-            });
-        // return super.onExecute();
-    }
-
-    private _wrapOnExecute(): Promise<void> {
-        try {
-            return super.onExecute().then(() => {
-                // override
-            });
-        } catch (error) {
-            return Promise.reject(error);
-        }
+        return super.onExecute();
     }
 }

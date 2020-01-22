@@ -13,8 +13,8 @@ export class CreateAction extends CommandLineAction {
     public constructor() {
         super({
             actionName: 'create',
-            summary: 'Create action creates a new profile',
-            documentation: 'Create action creates a new profile but does not automatically sym link profile ',
+            summary: 'Create a new profile',
+            documentation: 'Creates a new profile but does not automatically symlink profile ',
         });
 
         this.npmrcStore = path.join(Utilities.getHomeDirectory(), '.npmrcs');
@@ -25,7 +25,7 @@ export class CreateAction extends CommandLineAction {
             parameterLongName: '--profile',
             parameterShortName: '-p',
             argumentName: 'PROFILE_NAME',
-            description: 'Create a .npmrc profile',
+            description: 'Creates a new .npmrc file for specified profile',
         });
     }
 

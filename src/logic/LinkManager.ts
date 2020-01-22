@@ -50,7 +50,7 @@ export class LinkManager {
             FileSystem.deleteFile(this._npmrc);
         }
 
-        console.log('Activating .npmrc (%s)', path.basename(link));
+        console.log('Activating .npmrc (%s) \n', path.basename(link));
 
         // Symlinking ~/.npmrc ---> ~/.npmrcs/targetProfile
         this._createSymlink({

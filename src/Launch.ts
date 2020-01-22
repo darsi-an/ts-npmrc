@@ -16,11 +16,6 @@ export class Launch {
     }
 
     public static _printStartUpBanner(): void {
-        const nodeVersion: string = process.versions.node;
-        console.log(
-            colors.bold(`ts-npmrc: A simple tool for managing multiple .npmrc profiles`) +
-                `Node js version is ${nodeVersion}` +
-                EOL,
-        );
+        console.log(colors.bold(`ts-npmrc: A simple tool for managing multiple .npmrc profiles`) + EOL);
     }
 }
