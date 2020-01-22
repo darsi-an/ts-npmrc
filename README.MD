@@ -135,7 +135,7 @@ More companies now use private registry solutions for securely sharing and distr
 - Compliance with legal requirements to host code on-premises.
 - Better code discovery and sharing within their organization.
 
-##### Why use multiple registries?
+#### Why use multiple registries?
 
 - Some of your modules are open-source and thus published to the public npm registry (https://registry.npmjs.org) and others are private and published to your private registry.
 - You use multiple private registries: For example a company-wide registry for stable versions of modules and multiple per-team registries with nightly builds of each module.
