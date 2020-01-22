@@ -3,7 +3,6 @@ import { Utilities } from '../../utilities/Utilities';
 import * as path from 'path';
 
 export class DeleteAction extends CommandLineAction {
-    // private store params
     private npmrcStore!: string;
 
     private _profile!: CommandLineStringParameter;
@@ -42,7 +41,16 @@ export class DeleteAction extends CommandLineAction {
             process.exit(1);
         }
         const profilePath = path.join(this.npmrcStore, name);
+        const npmrc = Utilities.getUserConfigPath();
+        const activeProfile: string = Utilities.getActiveProfile(npmrc); // path.basename(Utilities.getActiveProfile(npmrc));
         if (Utilities.fileExists(profilePath)) {
+            if (activeProfile === profilePath) {
+                console.log(
+                    `Removing symlink to ${name}. The profile being deleted is currently active.\n` +
+                        `You need to link a .npmrc profile using "ts-npmrc link".`,
+                );
+                Utilities.deleteFileObject(npmrc);
+            }
             Utilities.deleteFile(profilePath);
         } else {
             console.log('No profile named "%s" exists', name);

@@ -156,6 +156,10 @@ export class Utilities {
         }
     }
 
+    public static deleteFileObject(filePath: string): void {
+        console.log(`Deleting: ${filePath}`);
+        FileSystem.deleteFile(filePath);
+    }
     /**
      * Follows linkPath to its destination and returns the absolute path to the final target of the link.
      * @param linkPath : The path to the link.
@@ -186,8 +190,8 @@ export class Utilities {
                 storePath,
             );
         }
-        const activeProfilePath: string = FileSystem.getRealPath(linkPath);
-        return activeProfilePath;
+        // const activeProfilePath: string = FileSystem.getRealPath(linkPath);
+        return activeProfile;
     }
 
     /**
