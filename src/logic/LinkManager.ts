@@ -30,8 +30,8 @@ export class LinkManager {
      */
     private _link(targetProfile: string): void {
         // ~/.npmrcs/targetProfile
-        const link = path.join(this._npmrcStore, targetProfile);
-        if (link == this._npmrcStore || !FileSystem.exists(link)) {
+        const target: string = path.join(this._npmrcStore, targetProfile);
+        if (target === this._npmrcStore || !Utilities.fileExists(target)) {
             console.error('Couldn\'t find npmrc file "%s".', targetProfile);
             return process.exit(1);
         }
@@ -50,11 +50,11 @@ export class LinkManager {
             FileSystem.deleteFile(this._npmrc);
         }
 
-        console.log('Activating .npmrc (%s) \n', path.basename(link));
+        console.log('Activating .npmrc (%s) \n', path.basename(target));
 
         // Symlinking ~/.npmrc ---> ~/.npmrcs/targetProfile
         this._createSymlink({
-            linkTargetPath: link,
+            linkTargetPath: target,
             newLinkPath: this._npmrc,
             symlinkKind: SymlinkKind.File,
         });
