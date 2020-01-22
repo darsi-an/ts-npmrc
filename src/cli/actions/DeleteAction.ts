@@ -28,7 +28,7 @@ export class DeleteAction extends CommandLineAction {
 
     protected onExecute(): Promise<void> {
         if (this._profile.value) {
-            console.log('Deleting profile %s', this._profile.value);
+            console.log('Attempting to delete profile %s', this._profile.value);
             this.deleteProfile(this._profile.value);
         }
 
@@ -45,11 +45,9 @@ export class DeleteAction extends CommandLineAction {
         const activeProfile: string = Utilities.getActiveProfile(npmrc); // path.basename(Utilities.getActiveProfile(npmrc));
         if (Utilities.fileExists(profilePath)) {
             if (activeProfile === profilePath) {
-                console.log(
-                    `Removing symlink to ${name}. The profile being deleted is currently active.\n` +
-                        `You need to link a .npmrc profile using "ts-npmrc link".`,
-                );
+                console.log(`The profile being deleted is currently active. Removing symlink to ${name}.\n`);
                 Utilities.deleteFileObject(npmrc);
+                console.log(`You need to link a .npmrc profile using "ts-npmrc link".\n`);
             }
             Utilities.deleteFile(profilePath);
         } else {
