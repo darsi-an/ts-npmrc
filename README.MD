@@ -28,11 +28,16 @@ usage: ts-npmrc [-h] <command> ...
 
 Positional arguments:
   <command>
-    profile   Either create, delete or list npmrc profiles in store
-    link      Create symbolic link for specified profile
+    create    Create a new profile
+    delete    Deletes a stored profile
+    list      Lists all stored .npmrc profiles
+    link      Creates symlink for specified profile
 
 Optional arguments:
   -h, --help  Show this help message and exit.
+
+For detailed help about a specific command, use: ts-npmrc <command>
+-h
 
 ```
 
@@ -47,9 +52,7 @@ ts-npmrc: A simple tool for managing multiple .npmrc profiles
 
 npmrc-store folder does not exist. ts-npmrc will create a store to manage your profiles
 
-Creating npmrc-store at C:\Users\Darsi\.npmrcs
-Making C:\Users\Darsi\.npmrc the default npmrc
-Call link function on default
+Creating npmrc-store at ~\.npmrcs
 Linking default profile...
 Activating .npmrc (default)
 
@@ -73,9 +76,10 @@ $ ts-npmrc list
 
 ts-npmrc: A simple tool for managing multiple .npmrc profiles
 
-Retrieving existing profiles from npmrc-store:
-default
-newProfile
+Stored profiles:
+
+ newProfile (active)
+ default
 
 ```
 
@@ -87,7 +91,7 @@ $ ts-npmrc delete -p targetProfile
 ts-npmrc: A simple tool for managing multiple .npmrc profiles
 
 Deleting profile targetProfile
-Deleting: C:\Users\Darsi\.npmrcs\targetProfile
+Deleting: ~\.npmrcs\targetProfile
 
 ```
 
@@ -100,12 +104,15 @@ $ ts-npmrc link -p targetProfile
 ts-npmrc: A simple tool for managing multiple .npmrc profiles
 
 ts-npmrc link is executing
+
 Initializing link action
 Linking targetProfile profile...
+Removing old .npmrc at default
 Activating .npmrc (targetProfile)
+
 ```
 
-You can add config options to the target .npmrc profile manually or, via `npm-config` set followed by `npm adduser` or `npm login` to authenticate. In both cases, just simply run `ts-npmrc link -p <target>` after you've set up your target's .npmrc file to activate. 
+You can add config options to the target .npmrc profile manually or, via `npm-config` set followed by `npm adduser` or `npm login` to authenticate. In both cases, just simply run `ts-npmrc link -p <target>` after you've set up your target .npmrc file to activate. 
 
 
 ## FAQ
