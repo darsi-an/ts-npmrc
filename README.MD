@@ -91,6 +91,9 @@ $ ts-npmrc delete -p targetProfile
 ts-npmrc: A simple tool for managing multiple .npmrc profiles
 
 Deleting profile targetProfile
+The profile being deleted is currently active. Removing symlink to targetProfile.
+You need to link a .npmrc profile using "ts-npmrc link".
+Deleting: ~\.npmrc
 Deleting: ~\.npmrcs\targetProfile
 
 ```
