@@ -17,6 +17,9 @@ Feel free to open an issue for any discussions (on use cases, design, implementa
 $ npm install -g ts-npmrc
 ```
 
+### Note for Windows
+You may have to use a shell (cmd, PowerShell, etc) with elevated privileges (run as administrator).
+
 ## Usage
 
 ```
