@@ -3,7 +3,7 @@
 
 ## Overview
 
-`ts-npmrc` is a command line tool for managing multiple `.npmrc` files. Built to provide an updated alternative to [npmrc](https://www.npmjs.com/package/npmrc), `ts-npmrc` has all previous features, support for requested features and provides more control over linking capabilities. As an alternative to `npmrc`, it uses the same npmrcStore path allowing you to switch to `ts-npmrc` with ease and grace. Currently, you can manage (create/delete/link/list) .npmrc files via this tool.
+`ts-npmrc` is a command line tool for managing multiple `.npmrc` files. Built to provide an updated alternative to [npmrc](https://www.npmjs.com/package/npmrc), `ts-npmrc` has all previous features, support for requested features and provides more control over linking capabilities. As an alternative to `npmrc`, it uses the same `NPMRC_STORE` path allowing you to switch to `ts-npmrc` with ease and grace. Currently, you can manage (create/delete/link/list) .npmrc files via this tool.
 
 ## Goal
 
@@ -18,7 +18,13 @@ $ npm install -g ts-npmrc
 ```
 
 ### Note for Windows
+
 You may have to use a shell (cmd, PowerShell, etc) with elevated privileges (run as administrator).
+
+## Environment Variables
+
+- `NPMRC` - Path to npmrc file used by npm. Defaults to npm's per-user config file `~/.npmrc`
+- `NPMRC_STORE`- Path to directory of stored profiles. Defaults to `~/.npmrcs/`.
 
 ## Usage
 
@@ -46,7 +52,7 @@ For detailed help about a specific command, use: ts-npmrc <command>
 
 #### Initialization
 
-When executing, if npmrcStore \(\~/.npmrcs) does not exist, `ts-npmrc` will create the npmrcStore folder in a user's home directory to store npm profiles. If you have a .npmrc in the home directory (~/.npmrc), ts-npmrc will copy this to the default .npmrc profile and AUTOMATICALLY create a symbolic link to point to it. 
+When executing, `ts-npmrc` will create the npmrc store directory (specified by `NPMRC_STORE` or `~/.npmrcs/`)  if it doesn't exist. If you have a .npmrc file in the directory (specified by `NPMRC` or `~/.npmrc`), `ts-npmrc` will copy this to the a .npmrc profile named 'default' and **AUTOMATICALLY** create a symbolic link to point to it. 
 
 ```
 $ ts-npmrc
