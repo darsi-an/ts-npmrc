@@ -16,12 +16,12 @@ export interface ILinkManagerCreateSymlinkOptions extends IFileSystemCreateLinkO
 }
 
 export class LinkManager {
-    private _npmrcStore: string;
     private _npmrc: string;
+    private _npmrcStore: string;
 
     public constructor() {
-        this._npmrc = path.join(Utilities.getHomeDirectory(), '.npmrc');
-        this._npmrcStore = path.join(Utilities.getHomeDirectory(), '.npmrcs');
+        this._npmrc = Utilities.getUserConfigPath();
+        this._npmrcStore = Utilities.getStorePath();
     }
 
     /**

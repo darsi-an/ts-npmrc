@@ -10,14 +10,17 @@ import { DeleteAction } from './actions/DeleteAction';
 import { ListAction } from './actions/ListAction';
 
 export class NpmrcCommandLineParser extends CommandLineParser {
-    private npmrc: string = path.join(Utilities.getHomeDirectory(), '.npmrc');
-    private npmrcStore: string = path.join(Utilities.getHomeDirectory(), '.npmrcs');
+    private npmrc: string;
+    private npmrcStore: string;
 
     public constructor() {
         super({
             toolFilename: 'ts-npmrc',
             toolDescription: '',
         });
+
+        this.npmrc = Utilities.getUserConfigPath();
+        this.npmrcStore = Utilities.getStorePath();
 
         if (!FileSystem.exists(this.npmrcStore)) {
             this._makeStore();
@@ -37,27 +40,23 @@ export class NpmrcCommandLineParser extends CommandLineParser {
      * Creates '.npmrcs' directory at a users home directory if it doesn't exist
      */
     private _makeStore(): void {
-        const homeDirectory = Utilities.getHomeDirectory();
-        const npmrcStoreFolder: string = path.join(homeDirectory, '.npmrcs');
-        const defaultPath: string = path.join(npmrcStoreFolder, 'default');
-
-        const npmrcPath = path.join(homeDirectory, '.npmrc');
+        const defaultPath: string = path.join(this.npmrcStore, 'default');
 
         try {
-            if (!FileSystem.exists(npmrcStoreFolder)) {
+            if (!FileSystem.exists(this.npmrcStore)) {
                 console.log(
                     `npmrcStore folder does not exist. ` + `ts-npmrc will create a store to manage your profiles` + EOL,
                 );
 
-                console.log(`Creating npmrc-store at ${npmrcStoreFolder}`);
-                Utilities.createFolderWithRetry(npmrcStoreFolder);
+                console.log(`Creating npmrc-store at ${this.npmrcStore}`);
+                Utilities.createFolderWithRetry(this.npmrcStore);
             }
         } catch (e) {
             throw new Error(`Error creating npmrc-store directory: ${e}`);
         }
 
-        if (FileSystem.exists(npmrcPath)) {
-            console.log('ts-npmrc will make %s the default .npmrc file', npmrcPath);
+        if (FileSystem.exists(this.npmrc)) {
+            console.log('ts-npmrc will make %s the default .npmrc file', this.npmrc);
             FileSystem.move({
                 sourcePath: this.npmrc,
                 destinationPath: defaultPath,

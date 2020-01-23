@@ -4,10 +4,6 @@ import { Utilities } from '../../utilities/Utilities';
 import * as path from 'path';
 
 export class CreateAction extends CommandLineAction {
-    // ~/.npmrcs/
-    private npmrcStore: string;
-
-    // command params
     private _profile!: CommandLineStringParameter;
 
     public constructor() {
@@ -16,8 +12,6 @@ export class CreateAction extends CommandLineAction {
             summary: 'Create a new profile',
             documentation: 'Creates a new profile but does not automatically symlink profile ',
         });
-
-        this.npmrcStore = path.join(Utilities.getHomeDirectory(), '.npmrcs');
     }
 
     protected onDefineParameters(): void {
@@ -42,8 +36,8 @@ export class CreateAction extends CommandLineAction {
             console.log('Specify a name for your new configuration profile');
             return process.exit(1);
         }
-
-        const profile = path.join(this.npmrcStore, name);
+        const npmrcStore: string = Utilities.getStorePath();
+        const profile = path.join(npmrcStore, name);
         if (Utilities.fileExists(profile)) {
             console.log('npmrc profile "%s", exists (%s/%s)', name, profile);
             return process.exit(1);

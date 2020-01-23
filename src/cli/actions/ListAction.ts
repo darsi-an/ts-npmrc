@@ -3,10 +3,6 @@ import { Utilities } from '../../utilities/Utilities';
 import * as path from 'path';
 
 export class ListAction extends CommandLineAction {
-    // path to ~/.npmrc
-    private npmrc: string = path.join(Utilities.getHomeDirectory(), '.npmrc');
-    private npmrcStore: string = path.join(Utilities.getHomeDirectory(), '.npmrcs');
-
     public constructor() {
         super({
             actionName: 'list',
@@ -24,8 +20,10 @@ export class ListAction extends CommandLineAction {
     }
 
     private listProfiles(): void {
-        const activeProfile: string = path.basename(Utilities.getActiveProfile(this.npmrc)); // FileSystem.readFolder(this.npmrcStore);
-        const profilesList: string[] = Utilities.getFileList(this.npmrcStore);
+        const npmrc = Utilities.getUserConfigPath();
+        const npmrcStore = Utilities.getStorePath();
+        const activeProfile: string = path.basename(Utilities.getActiveProfile(npmrc)); // FileSystem.readFolder(this.npmrcStore);
+        const profilesList: string[] = Utilities.getFileList(npmrcStore);
         console.log('Stored profiles: \n');
         if (profilesList.length == 0) {
             console.log('No stored .npmrc profile. You may want to create a profile using "ts-npmrc create"');

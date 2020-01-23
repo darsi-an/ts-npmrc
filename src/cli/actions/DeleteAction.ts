@@ -3,8 +3,6 @@ import { Utilities } from '../../utilities/Utilities';
 import * as path from 'path';
 
 export class DeleteAction extends CommandLineAction {
-    private npmrcStore!: string;
-
     private _profile!: CommandLineStringParameter;
 
     public constructor() {
@@ -13,8 +11,6 @@ export class DeleteAction extends CommandLineAction {
             documentation: 'Delete a stored profile',
             summary: 'Deletes a stored profile ',
         });
-
-        this.npmrcStore = path.join(Utilities.getHomeDirectory(), '.npmrcs');
     }
 
     protected onDefineParameters(): void {
@@ -40,7 +36,8 @@ export class DeleteAction extends CommandLineAction {
             console.log('Specify profile name that you want to delete');
             process.exit(1);
         }
-        const profilePath = path.join(this.npmrcStore, name);
+        const npmrcStore = Utilities.getStorePath();
+        const profilePath = path.join(npmrcStore, name);
         const npmrc = Utilities.getUserConfigPath();
         const activeProfile: string = Utilities.getActiveProfile(npmrc); // path.basename(Utilities.getActiveProfile(npmrc));
         if (Utilities.fileExists(profilePath)) {
