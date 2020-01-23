@@ -27,12 +27,12 @@ export class Utilities {
     }
 
     public static getStorePath(): string {
-        const storeDirectory: string = path.join(this.getHomeDirectory(), '.npmrcs');
+        const storeDirectory: string = process.env.NPMRC_STORE || path.join(this.getHomeDirectory(), '.npmrcs');
         return storeDirectory;
     }
 
     public static getUserConfigPath(): string {
-        const userConfigPath: string = path.join(Utilities.getHomeDirectory(), '.npmrc');
+        const userConfigPath: string = process.env.NPMRC || path.join(Utilities.getHomeDirectory(), '.npmrc');
         return userConfigPath;
     }
 
