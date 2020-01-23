@@ -32,7 +32,7 @@ export class LinkManager {
         // ~/.npmrcs/targetProfile
         const target: string = path.join(this._npmrcStore, targetProfile);
         if (target === this._npmrcStore || !Utilities.fileExists(target)) {
-            console.error('Couldn\'t find npmrc file "%s".', targetProfile);
+            console.error('Cannot find npmrc file "%s".', targetProfile);
             return process.exit(1);
         }
 
