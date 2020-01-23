@@ -43,7 +43,7 @@ export class NpmrcCommandLineParser extends CommandLineParser {
         const defaultPath: string = path.join(this.npmrcStore, 'default');
 
         try {
-            if (!FileSystem.exists(this.npmrcStore)) {
+            if (!Utilities.directoryExists(this.npmrcStore)) {
                 console.log(
                     `npmrcStore folder does not exist. ` + `ts-npmrc will create a store to manage your profiles` + EOL,
                 );
@@ -55,7 +55,7 @@ export class NpmrcCommandLineParser extends CommandLineParser {
             throw new Error(`Error creating npmrc-store directory: ${e}`);
         }
 
-        if (FileSystem.exists(this.npmrc)) {
+        if (Utilities.fileExists(this.npmrc)) {
             console.log('ts-npmrc will make %s the default .npmrc file', this.npmrc);
             FileSystem.move({
                 sourcePath: this.npmrc,
