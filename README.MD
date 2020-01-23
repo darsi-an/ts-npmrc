@@ -23,7 +23,7 @@ You may have to use a shell (cmd, PowerShell, etc) with elevated privileges (run
 
 ## Environment Variables
 
-- `NPMRC` - Path to npmrc file used by npm. Defaults to npm's per-user config file `~/.npmrc`
+- `NPMRC` - Path to .npmrc file used by npm. Defaults to npm's per-user config file `~/.npmrc`
 - `NPMRC_STORE`- Path to directory of stored profiles. Defaults to `~/.npmrcs/`.
 
 ## Usage
