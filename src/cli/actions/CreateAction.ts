@@ -39,7 +39,7 @@ export class CreateAction extends CommandLineAction {
         const npmrcStore: string = Utilities.getStorePath();
         const profile = path.join(npmrcStore, name);
         if (Utilities.fileExists(profile)) {
-            console.log('npmrc profile "%s", exists (%s/%s)', name, profile);
+            console.log('npmrc profile "%s" exists (%s), try another name.', name, profile);
             return process.exit(1);
         }
 
