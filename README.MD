@@ -52,7 +52,7 @@ For detailed help about a specific command, use: ts-npmrc <command>
 
 #### Initialization
 
-When executing, `ts-npmrc` will create the npmrc store directory (specified by `NPMRC_STORE` or `~/.npmrcs/`)  if it doesn't exist. If you have a .npmrc file in the directory (specified by `NPMRC` or `~/.npmrc`), `ts-npmrc` will copy this to the a .npmrc profile named 'default' and **AUTOMATICALLY** create a symbolic link to point to it. 
+When executing, `ts-npmrc` will create the npmrc store directory (specified by `NPMRC_STORE` or `~/.npmrcs/`)  if it doesn't exist. If you have a .npmrc file in the directory (specified by `NPMRC` or `~/.npmrc`), `ts-npmrc` will copy this to a .npmrc profile named 'default' and **AUTOMATICALLY** create a symbolic link to point to it. 
 
 ```
 $ ts-npmrc
