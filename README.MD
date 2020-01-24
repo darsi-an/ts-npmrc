@@ -45,8 +45,7 @@ Positional arguments:
 Optional arguments:
   -h, --help  Show this help message and exit.
 
-For detailed help about a specific command, use: ts-npmrc <command>
--h
+For detailed help about a specific command, use: ts-npmrc <command> -h
 
 ```
 
