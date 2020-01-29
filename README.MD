@@ -132,6 +132,7 @@ You can add config options to the target .npmrc profile manually or, via `npm-co
 
 #### Differences with [npmrc](https://www.npmjs.com/package/npmrc)?
 
+- I stumbled across the necessity of an updated npmrc tool while exploring scenarios tackled by [@microsoft/rush](https://www.npmjs.com/package/@microsoft/rush), as a result it is modeled after robust implementations used in [@microsoft/rushstack](https://github.com/microsoft/rushstack)
 - Modular design using [@microsoft/ts-command-line ](https://www.npmjs.com/package/@microsoft/ts-command-line)
 - Uses [@microsoft/node-core-library](https://www.npmjs.com/package/@microsoft/node-core-library) FileSystem API
 - Ability to delete profile, manually link and sync (WIP)
