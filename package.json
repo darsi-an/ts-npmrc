@@ -30,7 +30,7 @@
   "author": "darsi-an",
   "license": "MIT",
   "dependencies": {
-    "@microsoft/node-core-library": "^3.18.2",
+    "@microsoft/node-core-library": "^4.0.1",
     "@microsoft/ts-command-line": "^4.3.7",
     "colors": "^1.4.0",
     "typescript": "^3.7.4"
